@@ -1,4 +1,5 @@
 package org.example.controller;
+import org.example.annotation.BookAnnotation;
 import org.example.entity.Book;
 import org.example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @BookAnnotation
     @GetMapping("/books/search")
     public List<Book> searchBooks(
             @RequestParam(required = false) String authorName,
@@ -23,14 +25,12 @@ public class BookController {
             @RequestParam(required = false) String fromDate,
             @RequestParam(required = false) String toDate) {
 
-
         if (authorName != null) {
             authorName = authorName.trim();
         }
         if (title != null) {
             title = title.trim();
         }
-
 
         LocalDate fromLocalDate = null;
         LocalDate toLocalDate = null;
@@ -47,6 +47,9 @@ public class BookController {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Invalid date format");
         }
+
+
+
 
         return bookService.searchBooks(authorName, title, fromLocalDate, toLocalDate);
     }

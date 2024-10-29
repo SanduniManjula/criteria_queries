@@ -15,12 +15,6 @@ public class BookService {
     public List<Book> searchBooks(String authorName, String title, LocalDate fromDate, LocalDate toDate) {
         return bookRepositoryCustom.findBooksByCriteria(authorName, title, fromDate, toDate);
     }
-/*
-    public void test() {
-        List<Book> allBooks = bookRepositoryCustom.findAllBooks();
-        System.out.println(allBooks);
-    }
- */
 
     public List<Book> test(){
         System.out.println("All Books with Details");
