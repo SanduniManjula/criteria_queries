@@ -32,6 +32,7 @@ public class BookController {
             title = title.trim();
         }
 
+
         LocalDate fromLocalDate = null;
         LocalDate toLocalDate = null;
 
@@ -49,8 +50,6 @@ public class BookController {
         }
 
 
-
-
         return bookService.searchBooks(authorName, title, fromLocalDate, toLocalDate);
     }
 
@@ -66,6 +65,5 @@ public class BookController {
        return bookService.test();
       // return null;
     }
-
 
 }

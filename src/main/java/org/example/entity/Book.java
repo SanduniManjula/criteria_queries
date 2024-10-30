@@ -1,8 +1,9 @@
 package org.example.entity;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.annotation.ValidAuthor;
+import org.example.annotation.ValidTitle;
 import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @ValidTitle
     String title;
+    @ValidAuthor
     String author;
     double price;
     int page;

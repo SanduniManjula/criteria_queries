@@ -54,7 +54,4 @@ public class SearchBookAspect {
         log.info("Found books: " + books);
     }
 
-
-
-
 }

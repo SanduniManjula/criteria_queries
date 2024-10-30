@@ -2,7 +2,6 @@ package org.example.repository;
 
 import org.example.entity.Book;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -51,7 +50,12 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Book> query = builder.createQuery(Book.class);
         Root<Book> book = query.from(Book.class);
-        query.select(book);
+        // query.select(book);
+
+        Predicate titlePredicate = builder.notLike(book.get("title"), "The%");
+        query.select(book).where(titlePredicate);
+       // Predicate authorPredicate = builder.like(book.get("author"),"A");
+       // query.select(book).where(authorPredicate);
 
         return em.createQuery(query).getResultList();
     }
